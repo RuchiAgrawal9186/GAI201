@@ -1,0 +1,12 @@
+{
+    "1": {
+        "name": "Pizza Margherita",
+        "price": 10.99,
+        "availability": true
+    },
+    "2": {
+        "name": "Pasta Alfredo",
+        "price": 8.99,
+        "availability": true
+    }
+}

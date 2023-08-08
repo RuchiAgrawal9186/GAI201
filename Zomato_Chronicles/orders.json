@@ -1,0 +1,18 @@
+{
+    "1": {
+        "customer": "John",
+        "dishes": ["1", "2"],
+        "status": "received"
+    },
+    "2": {
+        "customer": "Alice",
+        "dishes": ["3"],
+        "status": "preparing"
+    }
+}
+
+
+
+
+
+
