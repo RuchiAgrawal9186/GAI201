@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block body %}
+
+{% comment %} {{item}} {% endcomment %}
+
+    <div class="container my-3 col-md-6 mx-auto">
+      <h2 >Update Student details</h2>
+      <form class="form" method="POST" action="/update/{{ item.id }}/">
+        {% csrf_token %}
+        <div class="mb-3">
+          <label for="name" class="form-label">Enter Name</label>
+          <input type="text" class="form-control" id="firstname" name="name"aria-describedby="emailHelp"  placeholder="enter a name" value={{item.name}}>
+        </div>
+        <div class="mb-3">
+            <label for="rollno" class="form-label">Roll no</label>
+            <input type="text" class="form-control" id="lastname" name="rollno"aria-describedby="emailHelp"  value={{item.roll_no}}>
+          </div>
+          <div class="mb-3">
+            <label for="course" class="form-label">Course</label>
+            <input type="text" class="form-control" id="username" name="course"aria-describedby="emailHelp"  placeholder="enter a course" value={{item.course}}>
+          </div>
+          <div class="mb-3">
+            <label for="rollno" class="form-label">Age</label>
+            <input type="number" class="form-control" id="lastname" name="age"aria-describedby="emailHelp"  placeholder="enter an age" value={{item.age}}>
+          </div>
+        <button type="submit" class="ml-20 btn btn-primary" name="updatestudent" >Update</button>
+      </form>
+      {% comment %} <p class="mt-2">Already member?<a href="/">Login hear</a></p>       {% endcomment %}
+    </div>
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
+
+{% endblock body %}
