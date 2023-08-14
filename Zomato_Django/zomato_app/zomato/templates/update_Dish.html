@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block body %}
+
+{% comment %} {{item}} {% endcomment %}
+<div class="container my-3 col-md-4 mx-auto mt-5" style="border:1px solid white; color:black; background-color:white">
+<h2 style="text-align:center;">Update Dish</h2>
+<form method="post" action="/update_dish/{{dish.id}}">
+    {% csrf_token %}
+    
+    <div class="form">
+        <label for="dish_name" class="form-label">Dish Name:</label>
+        <input type="text" id="dish_name" name="name" class="form-control"  value="{{ dish.name }}" required>
+      </div>
+      <div class="mb-3">
+        <label for="dish_price" class="form-label">Price:</label>
+        <input type="number" id="dish_price" name="price" class="form-control" value="{{ dish.price }}" step="0.01" required>
+      </div>
+      <div class="mb-3">
+        <label for="dish_available" class="form-label">Availability:</label>
+        <input type="checkbox" id="available" name="available" {% if dish.available %}checked{% endif %}><br>
+        {% comment %} <input type="checkbox" id="dish_available" name="available"> {% endcomment %}
+      </div>
+      <div class="mb-3">
+        <label for="dish_image_url" class="form-label">Image URL:</label>
+        <input type="url" id="dish_image_url" class="form-control" name="dish_image_url" value={{dish.image_url}} required>
+      </div>
+      <div class="mb-3">
+      <button type="submit" class="ml-20 btn btn-dark form-control">Update Dish</button>
+      </div>
+</form>
+</div>
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
+
+{% endblock body %}
