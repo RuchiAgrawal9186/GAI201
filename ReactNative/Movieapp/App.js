@@ -4,6 +4,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from "@react-navigation/native-stack"
 import Home from './components/Home';
 import Movie from './components/Movie';
+import Login from './components/Login';
 
 export default function App() {
 
@@ -13,6 +14,7 @@ export default function App() {
       <Stack.Navigator initialRouteName='Home'>
         <Stack.Screen name={"Home"} component={Home}/>
         <Stack.Screen name={"Movie"} component={Movie}/>
+        <Stack.Screen name={"Login"} component={Login}/>
       </Stack.Navigator>
     </NavigationContainer>
     // <View style={styles.container}>
