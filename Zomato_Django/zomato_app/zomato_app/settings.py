@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    "zomato"
+    "zomato",
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
@@ -49,6 +50,15 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
+]
+
+CORS_ALLOW_ALL_ORIGINS = True
+
+CORS_ALLOW_ORIGINS = [
+    "http://localhost:19006/",
+    # Add other allowed origins here
 ]
 
 ROOT_URLCONF = 'zomato_app.urls'
@@ -76,10 +86,16 @@ WSGI_APPLICATION = 'zomato_app.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
+
     # 'default': {
     #     'ENGINE': 'djongo',
-    #     'NAME': 'zomato_db',  # Replace 'zomato_db' with your preferred database name
+    #     'ENFORCE_SCHEMA': True,
+    #     'NAME': 'zomato',
+    #     'CLIENT': {
+    #         'host': 'mongodb+srv://ruchiagrawal:ruchi@cluster0.qngxh7x.mongodb.net',
+    #     }
     # }
+    # mongodb+srv://ruchiagrawal:ruchi@cluster0.qngxh7x.mongodb.net/chatgpt
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
@@ -121,13 +137,21 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+# # STATIC_URL = 'static/'
+# STATIC_ROOT = BASE_DIR /  "zomato"/"static"
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
+# # Default primary key field type
+# # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
+
+# # STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
+
+# STATICFILES_DIRS = [
+#     BASE_DIR / "zomato" / "static",
+# ]
+STATIC_URL = 'static/'
+STATIC_ROOT = BASE_DIR / "zomato" / "static"
 
 STATICFILES_DIRS = [
-    BASE_DIR / "static",
+    
 ]
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

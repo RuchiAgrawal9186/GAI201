@@ -1,15 +1,28 @@
 from django.shortcuts import render,redirect
+from django.views.decorators.csrf import csrf_exempt
 from .models import Dish,Order
+# import openai
+from django.core import serializers
+import json
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 
 def index(request):
     
     dishes = Dish.objects.all()
+    data = [{'name': dish.name, 'price': dish.price, 'available': dish.available, 'image_url': dish.image_url} for dish in dishes]
+    # return JsonResponse({'dishes': data})
     return render(request, 'index.html', {'dishes': dishes})
 
+# def get_csrf_token(request):
+    # token = get_token(request)
+    # return JsonResponse({'csrfToken': token})
 
+# @csrf_exempt
 def add_dish(request):
+    # print("Request Headers:", request.headers)
     if request.method == 'POST':
         name = request.POST['name']
         price = request.POST['price']
@@ -17,12 +30,11 @@ def add_dish(request):
         dish_image_url = request.POST.get('dish_image_url')
         
         # Create and save the dish with the converted value
+        print(name)
         Dish.objects.create(name=name, price=price, available=available,image_url=dish_image_url)
-        
         return redirect('index')
-        
     return render(request, 'AddDish.html')
-
+        
 def update_dish(request, dish_id):
     dish = Dish.objects.get(pk=dish_id)
     if request.method == 'POST':
@@ -40,7 +52,7 @@ def delete_dish(request, dish_id):
     dish.delete()
     return redirect('index')
     # return render(request, 'zomato_app/delete_dish.html', {'dish': dish})
-    
+# @csrf_exempt    
 def place_order(request, dish_id):
     dish = Dish.objects.get(pk=dish_id)
     if request.method == 'POST':
@@ -81,4 +93,5 @@ def delete_order(request, order_id):
     order = Order.objects.get(pk=order_id)
     order.delete()
     return redirect('order_list')
-    
+
+
